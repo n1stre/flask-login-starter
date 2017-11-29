@@ -1,16 +1,13 @@
 from app import db
 from app.helpers import ts
 
-class User(db.Model):
+class Command(db.Model):
   id            = db.Column(db.Integer, primary_key=True)
-  public_id     = db.Column(db.String(50), unique=True)
+  type          = db.Column(db.String(20))
   name          = db.Column(db.String(50))
-  password      = db.Column(db.String(80))
-  admin         = db.Column(db.Boolean)
+  user_id       = db.Column(db.Integer, db.ForeignKey('user.id'))
   date_created  = ts.created(db)
   date_modified = ts.modified(db)
-
-  commands = db.relationship('Command', backref = 'author', lazy = 'dynamic')
 
   def __init__(self, name):
     self.name = name
@@ -21,11 +18,11 @@ class User(db.Model):
 
   @staticmethod
   def get_all():
-    return User.query.all()
+    return Command.query.all()
 
   def delete(self):
     db.session.delete(self)
     db.session.commit()
 
   def __repr__(self):
-    return "<User: {}>".format(self.name)
+    return "<Command: {}>".format(self.name)
