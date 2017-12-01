@@ -2,8 +2,9 @@ import os
 from flask_script import Manager 
 from flask_migrate import Migrate, MigrateCommand
 from app import db, create_app
-import app.models
 
+from app.mod_auth.models import AuthUser
+from app.mod_commands.models import Command
 
 app = create_app(config_name=os.getenv('APP_ENV'))
 migrate = Migrate(app, db)

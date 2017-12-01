@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }} | Polylang</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link 
+      href="{{ url_for('static', filename='css/style.css') }}" 
+      rel="stylesheet">
+</head>
+<body>
+  {% include '_partials/navbar.html' %}
+  
+  <div class="wrapper">
+    {% block body %}
+    {% endblock %}
+    <div class="push"></div>
+  </div>
+  
+  {% include '_partials/footer.html' %}
+</body>
+</html>

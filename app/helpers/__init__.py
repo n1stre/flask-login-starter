@@ -10,8 +10,3 @@ def ts_modified(db):
     default=db.func.current_timestamp(),
     onupdate=db.func.current_timestamp()
   )
-
-ts = {
-  created: ts_created,
-  modified: ts_modified
-}
